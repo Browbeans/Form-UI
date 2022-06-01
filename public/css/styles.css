@@ -1,0 +1,89 @@
+body {
+    background: white;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.heroContainer {
+    width: 100%;
+    background-image: url("https://i.picsum.photos/id/665/1600/400.jpg?hmac=_bqybN6OSwmLs5ZvnuUz2GMWU5ZnLaQCAXc5CHsmGYs");
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+    padding: 1rem;
+}
+
+.heroTitle {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);
+}
+
+.heroText {
+    margin: 0;
+    padding-top: 1rem;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);
+}
+
+.bodySection {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.formContainer {
+    width: 50%;
+    color: white;
+    box-sizing: border-box;
+}
+
+.registerForm {
+    margin: 0;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.input {
+    border: 1px solid green;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    outline: none;
+    margin-top: 0.5rem;
+}
+
+.checkbox {
+    margin-right: 1rem;
+    padding: 1rem;
+}
+
+.inputContainer {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.checkboxContainer {
+    margin: 1rem;
+    display: flex;
+    width: 40%;
+    align-items: center;
+}
+
+.submitContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    width: 20%;
+    padding: 0.5rem;
+}
