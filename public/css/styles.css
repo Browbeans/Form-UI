@@ -37,7 +37,7 @@ body {
 }
 
 .formContainer {
-    width: 50%;
+    width: 40%;
     color: white;
     box-sizing: border-box;
 }
@@ -46,16 +46,31 @@ body {
     margin: 0;
     color: black;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
     flex-wrap: wrap;
 }
 
 .input {
-    border: 1px solid green;
+    border: 1px solid black;
     border-radius: 0.5rem;
     padding: 0.5rem;
     outline: none;
     margin-top: 0.5rem;
+    width: 270px;
+}
+
+.inputError {
+    border: 1px solid red;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    outline: none;
+    margin-top: 0.5rem;
+    width: 270px;
+}
+
+.input:focus {
+    border: 1px solid blue;
 }
 
 .checkbox {
@@ -67,13 +82,17 @@ body {
     margin: 1rem;
     display: flex;
     flex-direction: column;
-    width: 40%;
+    height: 60px;
+}
+
+.inputGroup {
+    width: 100%;
+    display: flex;
 }
 
 .checkboxContainer {
     margin: 1rem;
     display: flex;
-    width: 40%;
     align-items: center;
 }
 
@@ -86,4 +105,59 @@ body {
 .button {
     width: 20%;
     padding: 0.5rem;
+    background-color: green;
+}
+
+.errorText {
+    color: red;
+    margin: 0;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.passwordButton {
+    color: blue;
+    text-decoration: underline;
+    margin: 0;
+    margin-top: 0.9rem;
+    margin-left: 1rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.input-with-icon {
+    position: relative;
+    height: 3.2rem;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.form-control {
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    outline: none;
+    margin-top: 0.5rem;
+    width: calc(270px - 3.15rem);
+}
+
+.input-with-icon .form-control {
+    padding-right: 3.65rem;
+}
+
+.input-with-icon .icon {
+    position: absolute;
+    /* These are set relative to the height of the input box to bound the box neatly inside. This is aesthetic to me but you may change the dimensions of course. */
+    right: 0.3rem;
+    top: 0.3rem;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 0.3rem;
+
+    /* content in the icon div is centered, without bootstrap or font-awesome you may wish to add your own text in the span */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
 }
