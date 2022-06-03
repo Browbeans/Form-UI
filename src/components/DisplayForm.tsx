@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { RegisterFormInterface } from "../types/types";
+import { NotificationColor, RegisterFormInterface } from "../types/types";
+import { Notification } from "../components/Notification";
 
 interface DisplayFormProps {
     formValues: RegisterFormInterface;
@@ -8,13 +9,17 @@ interface DisplayFormProps {
 export const DisplayForm: FC<DisplayFormProps> = ({ formValues }) => {
     return (
         <div className="bodySection">
-            <h2>Din registrering är nu slutförd!</h2>
-            <h4>Här är dina uppgifter</h4>
-            <p>{`Förnamn: ${formValues.firstName}`}</p>
-            <p>{`Efternamn: ${formValues.lastName}`}</p>
-            <p>{`Mailadress: ${formValues.email}`}</p>
-            <p>Har du glömt ditt lösenord klicka på länken</p>
-            <link href="#">återställ lösenord</link>
+            <Notification
+                background={NotificationColor.NOTIFICATION_GREEN}
+                title="Din registrering är nu slutförd!"
+                listItems={[
+                    `Förnamn: ${formValues.firstName}`,
+                    `Efternamn: ${formValues.lastName}`,
+                    `Mailadress: ${formValues.email}`,
+                    "Har du glömt ditt lösenord klicka på länken",
+                ]}
+            />
+            <a href="#">Återställ lösenord</a>
         </div>
     );
 };

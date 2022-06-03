@@ -128,7 +128,7 @@ body {
 }
 
 .button:disabled {
-    background: #88d8b0;
+    background: #defbe6;
     cursor: not-allowed;
 }
 
@@ -190,7 +190,7 @@ body {
 }
 
 .notificationGreen {
-    background: #88d8b0;
+    background: #defbe6;
 }
 
 .notificationRed {

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { RegisterForm } from "../components/RegisterForm";
 import { Notification } from "../components/Notification";
 import { RegisterFormInterface } from "../types/types";
-import { FadeIn } from "../components/Animation";
 import { DisplayForm } from "../components/DisplayForm";
 
 export const HelloWorld: React.FC = () => {
