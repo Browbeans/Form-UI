@@ -2,18 +2,23 @@ import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { validateEmail } from "../helpers/validators";
 import { RegisterFormInterface } from "../types/types";
+import { MaskTextIcon } from "./images/MaskTextIcon";
+import { UnmaskTextIcon } from "./images/UnmaskTextIcon";
 
-export const RegisterForm: FC = () => {
+interface RegisterFormProps {
+    onFormSubmit: (values: RegisterFormInterface) => void;
+}
+
+export const RegisterForm: FC<RegisterFormProps> = ({ onFormSubmit }) => {
     const [masked, setMasked] = useState(true);
-    const [pinCode, setPinCode] = useState<string>("");
 
-    const { register, trigger, handleSubmit, setValue, control, formState } =
+    const { register, handleSubmit, formState, getValues } =
         useForm<RegisterFormInterface>({
             mode: "onChange",
         });
 
     const onSubmit = (data: RegisterFormInterface) => {
-        console.log(data);
+        onFormSubmit(data);
     };
 
     return (
@@ -23,6 +28,7 @@ export const RegisterForm: FC = () => {
                     <div className="inputContainer">
                         <label htmlFor="firstName">Förnamn</label>
                         <input
+                            tabIndex={1}
                             className={
                                 !formState.errors.firstName?.message
                                     ? "input"
@@ -48,6 +54,7 @@ export const RegisterForm: FC = () => {
                     <div className="inputContainer">
                         <label htmlFor="lastName">Efternamn</label>
                         <input
+                            tabIndex={2}
                             className="input"
                             type={"text"}
                             {...register("lastName", {
@@ -72,6 +79,7 @@ export const RegisterForm: FC = () => {
                         <label htmlFor="password">Lösenord</label>
                         <div className="input-with-icon">
                             <input
+                                tabIndex={3}
                                 className="form-control"
                                 type={masked ? "password" : "text"}
                                 {...register("password", {
@@ -88,7 +96,13 @@ export const RegisterForm: FC = () => {
                                 onClick={() => setMasked((masked) => !masked)}
                                 className="btn btn-default icon"
                             >
-                                <span>P</span>
+                                <span tabIndex={4}>
+                                    {masked ? (
+                                        <UnmaskTextIcon />
+                                    ) : (
+                                        <MaskTextIcon />
+                                    )}
+                                </span>
                             </div>
                         </div>
                         {formState.errors.password && (
@@ -100,14 +114,20 @@ export const RegisterForm: FC = () => {
                     <div className="inputContainer">
                         <label htmlFor="repeatPassword">Upprepa lösenord</label>
                         <input
+                            tabIndex={5}
                             className="input"
-                            type={masked ? "password" : "text"}
+                            type={"password"}
                             {...register("repeatPassword", {
                                 required: true,
                                 minLength: {
                                     value: 2,
                                     message:
                                         "Vänligen ange ditt fullständiga förnamn",
+                                },
+                                validate: {
+                                    validatePasswordMatch: (value) =>
+                                        value === getValues("password") ||
+                                        "Lösenord stämmer inte överens",
                                 },
                             })}
                             {...register}
@@ -128,8 +148,9 @@ export const RegisterForm: FC = () => {
                     }}
                 >
                     <div className="inputContainer">
-                        <label htmlFor="email">Mailaddress</label>
+                        <label htmlFor="email">Mailadress</label>
                         <input
+                            tabIndex={6}
                             className="input"
                             type={"text"}
                             {...register("email", {
@@ -155,27 +176,26 @@ export const RegisterForm: FC = () => {
                     </div>
                     <div className="checkboxContainer">
                         <input
+                            tabIndex={7}
                             className="checkbox"
                             type={"checkbox"}
                             {...register("acceptTerms", {
                                 required: true,
-                                minLength: {
-                                    value: 2,
-                                    message:
-                                        "Vänligen ange ditt fullständiga förnamn",
-                                },
                             })}
                             {...register}
                         />
-                        <label htmlFor="repeatPassword">
-                            Läs gärna våra villkor och accepter om allt känns
+                        <label htmlFor="checkbox">
+                            Läs gärna våra villkor och acceptera om allt känns
                             bra, du hittar dem här:&nbsp;
-                            <a href="#">www.google.com</a>
+                            <a tabIndex={8} href="#">
+                                www.google.com
+                            </a>
                         </label>
                     </div>
                 </div>
                 <div className="submitContainer">
                     <button
+                        tabIndex={9}
                         disabled={!formState.isValid}
                         className="button"
                         onClick={() => {}}

@@ -2,6 +2,8 @@ body {
     background: white;
     box-sizing: border-box;
     margin: 0;
+    font-family: "Roboto", sans-serif;
+    color: #444444;
 }
 
 .heroContainer {
@@ -33,44 +35,45 @@ body {
 .bodySection {
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .formContainer {
-    width: 40%;
     color: white;
     box-sizing: border-box;
 }
 
 .registerForm {
     margin: 0;
-    color: black;
+    color: #333333;
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
+    margin-bottom: 1rem;
 }
 
 .input {
-    border: 1px solid black;
+    border: 1px solid #333333;
     border-radius: 0.5rem;
     padding: 0.5rem;
     outline: none;
     margin-top: 0.5rem;
-    width: 270px;
+    width: 200px;
 }
 
 .inputError {
-    border: 1px solid red;
+    border: 1px solid #ff9494;
     border-radius: 0.5rem;
     padding: 0.5rem;
     outline: none;
     margin-top: 0.5rem;
-    width: 270px;
+    width: 200px;
 }
 
 .input:focus {
-    border: 1px solid blue;
+    border: 1px solid #8cbed6;
 }
 
 .checkbox {
@@ -88,12 +91,14 @@ body {
 .inputGroup {
     width: 100%;
     display: flex;
+    justify-content: center;
 }
 
 .checkboxContainer {
-    margin: 1rem;
+    margin: 1rem 0;
     display: flex;
     align-items: center;
+    width: 470px;
 }
 
 .submitContainer {
@@ -103,13 +108,32 @@ body {
 }
 
 .button {
-    width: 20%;
-    padding: 0.5rem;
-    background-color: green;
+    padding: 0.8rem 0;
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background: #00b159;
+    color: white;
+    cursor: pointer;
+    width: 200px;
+}
+
+.button:hover:focus {
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
+}
+
+.button:active {
+    background: #88d8b0;
+}
+
+.button:disabled {
+    background: #88d8b0;
+    cursor: not-allowed;
 }
 
 .errorText {
-    color: red;
+    color: #ff9494;
     margin: 0;
     margin-top: 0.5rem;
     font-size: 0.8rem;
@@ -133,17 +157,111 @@ body {
     cursor: pointer;
 }
 
+.form-control:focus {
+    border: 1px solid #8cbed6;
+}
+
 .form-control {
-    border: 1px solid black;
+    border: 1px solid #333333;
     border-radius: 0.5rem;
     padding: 0.5rem;
     outline: none;
     margin-top: 0.5rem;
-    width: calc(270px - 3.15rem);
+    width: calc(200px - 3.15rem);
 }
 
 .input-with-icon .form-control {
     padding-right: 3.65rem;
+}
+
+.notificationContainer {
+    border-radius: 1rem;
+    border: 1px solid #444444;
+    margin-top: 2rem;
+    width: 470px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.notificationStandard {
+    background: #dadada;
+}
+
+.notificationGreen {
+    background: #88d8b0;
+}
+
+.notificationRed {
+    background: #ff9494;
+}
+
+.notificationTitle {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.notificationList {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+.notificationListItem {
+    margin: 0.7rem;
+}
+
+.notificationListItem:first-of-type {
+    margin-top: 1rem;
+}
+
+.notificationListItem:last-of-type {
+    margin-bottom: 0;
+}
+
+.animationWrapper {
+    position: relative;
+    -webkit-animation: fadein 2s;
+    -moz-animation: fadein 2s;
+    -ms-animation: fadein 2s;
+    animation: fadeIn;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@-ms-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .input-with-icon .icon {
@@ -160,4 +278,34 @@ body {
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+}
+
+@media screen and (max-width: 480px) {
+    .inputGroup {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input {
+        width: 270px;
+    }
+    .inputError {
+        width: 270px;
+    }
+
+    .form-control {
+        width: calc(270px - 3.15rem);
+    }
+
+    .button {
+        width: 200px;
+    }
+
+    .checkboxContainer {
+        width: 270px;
+    }
+
+    .notificationContainer {
+        width: 90%;
+    }
 }
