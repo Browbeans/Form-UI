@@ -3,6 +3,7 @@ import { RegisterForm } from "../components/RegisterForm";
 import { Notification } from "../components/Notification";
 import { RegisterFormInterface } from "../types/types";
 import { FadeIn } from "../components/Animation";
+import { DisplayForm } from "../components/DisplayForm";
 
 export const HelloWorld: React.FC = () => {
     const [formValues, setFormValues] = useState<
@@ -21,7 +22,7 @@ export const HelloWorld: React.FC = () => {
             </div>
             <div className="bodySection">
                 {!formValues && (
-                    <FadeIn>
+                    <>
                         <Notification
                             title="Få full tillgång till all vår funktionalitet bland annat: "
                             listItems={[
@@ -37,12 +38,12 @@ export const HelloWorld: React.FC = () => {
                                 setFormValues(values)
                             }
                         />
-                    </FadeIn>
+                    </>
                 )}
                 {formValues && (
-                    <FadeIn>
-                        <p> Hej gott e de</p>
-                    </FadeIn>
+                    <>
+                        <DisplayForm formValues={formValues} />
+                    </>
                 )}
             </div>
         </>

@@ -175,9 +175,9 @@ body {
 }
 
 .notificationContainer {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     border-radius: 1rem;
-    border: 1px solid #444444;
-    margin-top: 2rem;
+    margin: 2rem 0;
     width: 470px;
     box-sizing: border-box;
     display: flex;
@@ -186,7 +186,7 @@ body {
 }
 
 .notificationStandard {
-    background: #dadada;
+    background: white;
 }
 
 .notificationGreen {
@@ -218,50 +218,6 @@ body {
 
 .notificationListItem:last-of-type {
     margin-bottom: 0;
-}
-
-.animationWrapper {
-    position: relative;
-    -webkit-animation: fadein 2s;
-    -moz-animation: fadein 2s;
-    -ms-animation: fadein 2s;
-    animation: fadeIn;
-}
-
-@keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@-moz-keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@-webkit-keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@-ms-keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
 }
 
 .input-with-icon .icon {
