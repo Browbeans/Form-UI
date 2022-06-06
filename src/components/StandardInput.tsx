@@ -2,12 +2,12 @@ import React, { FC } from "react";
 import { FieldError, FormState, UseFormRegisterReturn } from "react-hook-form";
 import { RegisterFormInterface } from "../types/types";
 
-interface StandardInputProps {
+export interface StandardInputProps {
     register: UseFormRegisterReturn;
     formState: FormState<RegisterFormInterface>;
     error: FieldError | undefined;
     tabIndex: number;
-    type: React.HTMLInputTypeAttribute;
+    type?: React.HTMLInputTypeAttribute;
     label?: string;
 }
 

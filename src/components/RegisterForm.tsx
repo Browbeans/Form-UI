@@ -4,6 +4,7 @@ import { validateEmail } from "../helpers/validators";
 import { RegisterFormInterface } from "../types/types";
 import { MaskTextIcon } from "./images/MaskTextIcon";
 import { UnmaskTextIcon } from "./images/UnmaskTextIcon";
+import { PasswordInput } from "./PasswordInput";
 import { StandardInput } from "./StandardInput";
 
 interface RegisterFormProps {
@@ -56,42 +57,22 @@ export const RegisterForm: FC<RegisterFormProps> = ({ onFormSubmit }) => {
                     />
                 </div>
                 <div className="inputGroup">
-                    <div className="inputContainer">
-                        <label htmlFor="password">Lösenord</label>
-                        <div className="input-with-icon">
-                            <input
-                                tabIndex={3}
-                                className="form-control"
-                                type={masked ? "password" : "text"}
-                                {...register("password", {
-                                    required: true,
-                                    minLength: {
-                                        value: 2,
-                                        message:
-                                            "Vänligen ange ditt fullständiga förnamn",
-                                    },
-                                })}
-                                {...register}
-                            />
-                            <div
-                                onClick={() => setMasked((masked) => !masked)}
-                                className="btn btn-default icon"
-                            >
-                                <span tabIndex={4}>
-                                    {masked ? (
-                                        <UnmaskTextIcon />
-                                    ) : (
-                                        <MaskTextIcon />
-                                    )}
-                                </span>
-                            </div>
-                        </div>
-                        {formState.errors.password && (
-                            <p className="errorText">
-                                {formState.errors.password.message}
-                            </p>
-                        )}
-                    </div>
+                    <PasswordInput
+                        masked={masked}
+                        setMasked={(masked: boolean) => setMasked(masked)}
+                        register={register("password", {
+                            required: true,
+                            minLength: {
+                                value: 2,
+                                message: "Lösenordet måste var minst 2 tecken",
+                            },
+                        })}
+                        formState={formState}
+                        error={formState.errors.password}
+                        tabIndex={3}
+                        maskedTabIndex={4}
+                        label={"Lösenord"}
+                    />
                     <StandardInput
                         tabIndex={5}
                         register={register("repeatPassword", {
@@ -120,33 +101,6 @@ export const RegisterForm: FC<RegisterFormProps> = ({ onFormSubmit }) => {
                         alignItems: "center",
                     }}
                 >
-                    <div className="inputContainer">
-                        <label htmlFor="email">Mailadress</label>
-                        <input
-                            tabIndex={6}
-                            className="input"
-                            type={"text"}
-                            {...register("email", {
-                                required: true,
-                                minLength: {
-                                    value: 2,
-                                    message:
-                                        "Vänligen ange en korrekt mailaddress",
-                                },
-                                validate: {
-                                    validation: (value) =>
-                                        validateEmail(value) ||
-                                        "Vänligen ange en korrekt mailaddress",
-                                },
-                            })}
-                            {...register}
-                        />
-                        {formState.errors.email && (
-                            <p className="errorText">
-                                {formState.errors.email.message}
-                            </p>
-                        )}
-                    </div>
                     <StandardInput
                         tabIndex={6}
                         register={register("email", {
