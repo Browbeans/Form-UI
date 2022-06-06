@@ -1,37 +1,38 @@
 import React, { FC } from "react";
-import { FormState, UseFormRegister } from "react-hook-form";
+import { FieldError, FormState, UseFormRegisterReturn } from "react-hook-form";
 import { RegisterFormInterface } from "../types/types";
 
 interface StandardInputProps {
-    register: UseFormRegister<RegisterFormInterface>;
+    register: UseFormRegisterReturn;
     formState: FormState<RegisterFormInterface>;
-    name: string;
+    error: FieldError | undefined;
+    tabIndex: number;
+    type: React.HTMLInputTypeAttribute;
+    label?: string;
 }
 
 export const StandardInput: FC<StandardInputProps> = ({
     register,
     formState,
-    name,
+    error,
+    label,
+    type,
+    tabIndex,
 }) => {
     return (
         <div className="inputContainer">
-            <label htmlFor="firstName">Förnamn</label>
+            {label && <label htmlFor={error?.ref?.name}>{label}</label>}
             <input
-                tabIndex={1}
+                tabIndex={tabIndex}
                 className={
                     !formState.errors.firstName?.message
                         ? "input"
                         : "inputError"
                 }
-                type={"text"}
-                // {...register(name)}
-                name={name}
+                type={type}
+                {...register}
             />
-            {formState.errors.firstName && (
-                <p className="errorText">
-                    {formState.errors.firstName.message}
-                </p>
-            )}
+            {error?.message && <p className="errorText">{error.message}</p>}
         </div>
     );
 };

@@ -4,6 +4,7 @@ import { validateEmail } from "../helpers/validators";
 import { RegisterFormInterface } from "../types/types";
 import { MaskTextIcon } from "./images/MaskTextIcon";
 import { UnmaskTextIcon } from "./images/UnmaskTextIcon";
+import { StandardInput } from "./StandardInput";
 
 interface RegisterFormProps {
     onFormSubmit: (values: RegisterFormInterface) => void;
@@ -25,54 +26,34 @@ export const RegisterForm: FC<RegisterFormProps> = ({ onFormSubmit }) => {
         <div className="formContainer">
             <form className="registerForm" onSubmit={handleSubmit(onSubmit)}>
                 <div className="inputGroup">
-                    <div className="inputContainer">
-                        <label htmlFor="firstName">Förnamn</label>
-                        <input
-                            tabIndex={1}
-                            className={
-                                !formState.errors.firstName?.message
-                                    ? "input"
-                                    : "inputError"
-                            }
-                            type={"text"}
-                            {...register("firstName", {
-                                required: true,
-                                minLength: {
-                                    value: 2,
-                                    message:
-                                        "Vänligen ange ditt fullständiga förnamn",
-                                },
-                            })}
-                            {...register}
-                        />
-                        {formState.errors.firstName && (
-                            <p className="errorText">
-                                {formState.errors.firstName.message}
-                            </p>
-                        )}
-                    </div>
-                    <div className="inputContainer">
-                        <label htmlFor="lastName">Efternamn</label>
-                        <input
-                            tabIndex={2}
-                            className="input"
-                            type={"text"}
-                            {...register("lastName", {
-                                required: true,
-                                minLength: {
-                                    value: 2,
-                                    message:
-                                        "Vänligen ange ditt fullständiga efternamn",
-                                },
-                            })}
-                            {...register}
-                        />
-                        {formState.errors.lastName && (
-                            <p className="errorText">
-                                {formState.errors.lastName.message}
-                            </p>
-                        )}
-                    </div>
+                    <StandardInput
+                        tabIndex={1}
+                        register={register("firstName", {
+                            required: true,
+                            minLength: {
+                                value: 2,
+                                message: "Vänligen ange ditt förnamn",
+                            },
+                        })}
+                        formState={formState}
+                        error={formState.errors.firstName}
+                        label={"Förnamn"}
+                        type={"text"}
+                    />
+                    <StandardInput
+                        tabIndex={2}
+                        register={register("lastName", {
+                            required: true,
+                            minLength: {
+                                value: 2,
+                                message: "Vänligen ange ditt efternamn",
+                            },
+                        })}
+                        formState={formState}
+                        error={formState.errors.lastName}
+                        label={"Efternamn"}
+                        type={"text"}
+                    />
                 </div>
                 <div className="inputGroup">
                     <div className="inputContainer">
@@ -111,33 +92,25 @@ export const RegisterForm: FC<RegisterFormProps> = ({ onFormSubmit }) => {
                             </p>
                         )}
                     </div>
-                    <div className="inputContainer">
-                        <label htmlFor="repeatPassword">Upprepa lösenord</label>
-                        <input
-                            tabIndex={5}
-                            className="input"
-                            type={"password"}
-                            {...register("repeatPassword", {
-                                required: true,
-                                minLength: {
-                                    value: 2,
-                                    message:
-                                        "Vänligen ange ditt fullständiga förnamn",
-                                },
-                                validate: {
-                                    validatePasswordMatch: (value) =>
-                                        value === getValues("password") ||
-                                        "Lösenord stämmer inte överens",
-                                },
-                            })}
-                            {...register}
-                        />
-                        {formState.errors.repeatPassword && (
-                            <p className="errorText">
-                                {formState.errors.repeatPassword.message}
-                            </p>
-                        )}
-                    </div>
+                    <StandardInput
+                        tabIndex={5}
+                        register={register("repeatPassword", {
+                            required: true,
+                            minLength: {
+                                value: 2,
+                                message: "Lösenordet måste var minst 2 tecken",
+                            },
+                            validate: {
+                                validatePasswordMatch: (value) =>
+                                    value === getValues("password") ||
+                                    "Lösenord stämmer inte överens",
+                            },
+                        })}
+                        formState={formState}
+                        error={formState.errors.repeatPassword}
+                        label={"Upprepa lösenord"}
+                        type={"password"}
+                    />
                 </div>
                 <div
                     style={{
@@ -174,6 +147,25 @@ export const RegisterForm: FC<RegisterFormProps> = ({ onFormSubmit }) => {
                             </p>
                         )}
                     </div>
+                    <StandardInput
+                        tabIndex={6}
+                        register={register("email", {
+                            required: true,
+                            minLength: {
+                                value: 2,
+                                message: "Vänligen ange en korrekt mailaddress",
+                            },
+                            validate: {
+                                validation: (value) =>
+                                    validateEmail(value) ||
+                                    "Vänligen ange en korrekt mailaddress",
+                            },
+                        })}
+                        formState={formState}
+                        error={formState.errors.email}
+                        label={"Mailadress"}
+                        type={"email"}
+                    />
                     <div className="checkboxContainer">
                         <input
                             tabIndex={7}
